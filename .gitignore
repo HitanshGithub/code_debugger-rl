@@ -21,7 +21,7 @@ training_log.csv
 
 # Virtual environment
 venv/
-env/
+
 .venv/
 
 # IDE
