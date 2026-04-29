@@ -1,0 +1,14 @@
+# HuggingFace stack
+transformers>=4.40.0
+torch>=2.1.0
+accelerate>=0.27.0       # needed for device_map="auto" on GPU
+huggingface_hub>=0.22.0  # model downloading
+
+# RL environment
+gymnasium>=0.29.0
+
+# Utilities
+numpy>=1.24.0
+pandas>=2.0.0
+tabulate>=0.9.0
+python-dotenv>=1.0.0

@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "description": "Fix the addition function",
+    "buggy_code": "def add(a, b):\n    return a - b",
+    "correct_code": "def add(a, b):\n    return a + b",
+    "bug_type": "wrong_operator",
+    "tests": [
+      {"assertion": "assert add(2, 3) == 5", "description": "basic addition"},
+      {"assertion": "assert add(0, 0) == 0", "description": "zero case"},
+      {"assertion": "assert add(-1, 1) == 0", "description": "negative numbers"}
+    ]
+  },
+  {
+    "id": 2,
+    "description": "Fix the multiplication function",
+    "buggy_code": "def multiply(a, b):\n    return a + b",
+    "correct_code": "def multiply(a, b):\n    return a * b",
+    "bug_type": "wrong_operator",
+    "tests": [
+      {"assertion": "assert multiply(2, 3) == 6", "description": "basic multiply"},
+      {"assertion": "assert multiply(0, 5) == 0", "description": "multiply by zero"},
+      {"assertion": "assert multiply(-2, 3) == -6", "description": "negative multiply"}
+    ]
+  },
+  {
+    "id": 3,
+    "description": "Fix the list sum function with off-by-one error",
+    "buggy_code": "def sum_list(nums):\n    total = 0\n    for i in range(len(nums) - 1):\n        total += nums[i]\n    return total",
+    "correct_code": "def sum_list(nums):\n    total = 0\n    for i in range(len(nums)):\n        total += nums[i]\n    return total",
+    "bug_type": "off_by_one",
+    "tests": [
+      {"assertion": "assert sum_list([1, 2, 3]) == 6", "description": "basic sum"},
+      {"assertion": "assert sum_list([1]) == 1", "description": "single element"},
+      {"assertion": "assert sum_list([0, 0, 0]) == 0", "description": "all zeros"}
+    ]
+  },
+  {
+    "id": 4,
+    "description": "Fix the factorial function with off-by-one error",
+    "buggy_code": "def factorial(n):\n    result = 1\n    for i in range(1, n):\n        result *= i\n    return result",
+    "correct_code": "def factorial(n):\n    result = 1\n    for i in range(1, n + 1):\n        result *= i\n    return result",
+    "bug_type": "off_by_one",
+    "tests": [
+      {"assertion": "assert factorial(5) == 120", "description": "factorial 5"},
+      {"assertion": "assert factorial(1) == 1", "description": "factorial 1"},
+      {"assertion": "assert factorial(3) == 6", "description": "factorial 3"}
+    ]
+  },
+  {
+    "id": 5,
+    "description": "Fix the function that returns wrong variable",
+    "buggy_code": "def max_of_two(a, b):\n    if a > b:\n        return b\n    return a",
+    "correct_code": "def max_of_two(a, b):\n    if a > b:\n        return a\n    return b",
+    "bug_type": "wrong_return_value",
+    "tests": [
+      {"assertion": "assert max_of_two(3, 5) == 5", "description": "second is max"},
+      {"assertion": "assert max_of_two(7, 2) == 7", "description": "first is max"},
+      {"assertion": "assert max_of_two(4, 4) == 4", "description": "equal values"}
+    ]
+  },
+  {
+    "id": 6,
+    "description": "Fix the function returning wrong variable in swap",
+    "buggy_code": "def first_element(lst):\n    first = lst[0]\n    last = lst[-1]\n    return last",
+    "correct_code": "def first_element(lst):\n    first = lst[0]\n    last = lst[-1]\n    return first",
+    "bug_type": "wrong_return_value",
+    "tests": [
+      {"assertion": "assert first_element([1, 2, 3]) == 1", "description": "basic list"},
+      {"assertion": "assert first_element([9]) == 9", "description": "single element"},
+      {"assertion": "assert first_element([5, 10, 15]) == 5", "description": "three elements"}
+    ]
+  },
+  {
+    "id": 7,
+    "description": "Fix the even number check with wrong condition",
+    "buggy_code": "def is_even(n):\n    if n % 2 == 1:\n        return True\n    return False",
+    "correct_code": "def is_even(n):\n    if n % 2 == 0:\n        return True\n    return False",
+    "bug_type": "missing_condition",
+    "tests": [
+      {"assertion": "assert is_even(4) == True", "description": "even number"},
+      {"assertion": "assert is_even(3) == False", "description": "odd number"},
+      {"assertion": "assert is_even(0) == True", "description": "zero is even"}
+    ]
+  },
+  {
+    "id": 8,
+    "description": "Fix the positive number check",
+    "buggy_code": "def is_positive(n):\n    if n >= 0:\n        return True\n    return False",
+    "correct_code": "def is_positive(n):\n    if n > 0:\n        return True\n    return False",
+    "bug_type": "missing_condition",
+    "tests": [
+      {"assertion": "assert is_positive(5) == True", "description": "positive"},
+      {"assertion": "assert is_positive(-3) == False", "description": "negative"},
+      {"assertion": "assert is_positive(0) == False", "description": "zero is not positive"}
+    ]
+  },
+  {
+    "id": 9,
+    "description": "Fix the loop bound in list reversal",
+    "buggy_code": "def reverse_list(lst):\n    result = []\n    for i in range(len(lst), 0, -1):\n        result.append(lst[i])\n    return result",
+    "correct_code": "def reverse_list(lst):\n    result = []\n    for i in range(len(lst) - 1, -1, -1):\n        result.append(lst[i])\n    return result",
+    "bug_type": "wrong_loop_bound",
+    "tests": [
+      {"assertion": "assert reverse_list([1, 2, 3]) == [3, 2, 1]", "description": "basic reverse"},
+      {"assertion": "assert reverse_list([1]) == [1]", "description": "single element"},
+      {"assertion": "assert reverse_list([5, 10]) == [10, 5]", "description": "two elements"}
+    ]
+  },
+  {
+    "id": 10,
+    "description": "Fix wrong loop range in counting",
+    "buggy_code": "def count_up_to(n):\n    result = []\n    for i in range(0, n):\n        result.append(i)\n    return result",
+    "correct_code": "def count_up_to(n):\n    result = []\n    for i in range(1, n + 1):\n        result.append(i)\n    return result",
+    "bug_type": "wrong_loop_bound",
+    "tests": [
+      {"assertion": "assert count_up_to(3) == [1, 2, 3]", "description": "count to 3"},
+      {"assertion": "assert count_up_to(1) == [1]", "description": "count to 1"},
+      {"assertion": "assert count_up_to(5) == [1, 2, 3, 4, 5]", "description": "count to 5"}
+    ]
+  },
+  {
+    "id": 11,
+    "description": "Fix the string uppercase method error",
+    "buggy_code": "def shout(text):\n    return text.lower()",
+    "correct_code": "def shout(text):\n    return text.upper()",
+    "bug_type": "string_method_error",
+    "tests": [
+      {"assertion": "assert shout('hello') == 'HELLO'", "description": "basic shout"},
+      {"assertion": "assert shout('world') == 'WORLD'", "description": "another word"},
+      {"assertion": "assert shout('abc') == 'ABC'", "description": "three letters"}
+    ]
+  },
+  {
+    "id": 12,
+    "description": "Fix the string strip method error",
+    "buggy_code": "def clean(text):\n    return text.lstrip()",
+    "correct_code": "def clean(text):\n    return text.strip()",
+    "bug_type": "string_method_error",
+    "tests": [
+      {"assertion": "assert clean('  hello  ') == 'hello'", "description": "strip both sides"},
+      {"assertion": "assert clean('  hi') == 'hi'", "description": "strip left"},
+      {"assertion": "assert clean('bye  ') == 'bye'", "description": "strip right"}
+    ]
+  },
+  {
+    "id": 13,
+    "description": "Fix the wrong list index access",
+    "buggy_code": "def get_last(lst):\n    return lst[0]",
+    "correct_code": "def get_last(lst):\n    return lst[-1]",
+    "bug_type": "index_error",
+    "tests": [
+      {"assertion": "assert get_last([1, 2, 3]) == 3", "description": "get last of 3"},
+      {"assertion": "assert get_last([9]) == 9", "description": "single element"},
+      {"assertion": "assert get_last([1, 2]) == 2", "description": "get last of 2"}
+    ]
+  },
+  {
+    "id": 14,
+    "description": "Fix the wrong index in middle element access",
+    "buggy_code": "def get_middle(lst):\n    mid = len(lst) // 2\n    return lst[mid + 1]",
+    "correct_code": "def get_middle(lst):\n    mid = len(lst) // 2\n    return lst[mid]",
+    "bug_type": "index_error",
+    "tests": [
+      {"assertion": "assert get_middle([1, 2, 3]) == 2", "description": "middle of 3"},
+      {"assertion": "assert get_middle([1, 2, 3, 4, 5]) == 3", "description": "middle of 5"},
+      {"assertion": "assert get_middle([10, 20]) == 20", "description": "middle of 2"}
+    ]
+  },
+  {
+    "id": 15,
+    "description": "Fix the division function using wrong operator",
+    "buggy_code": "def divide(a, b):\n    return a * b",
+    "correct_code": "def divide(a, b):\n    return a / b",
+    "bug_type": "wrong_operator",
+    "tests": [
+      {"assertion": "assert divide(10, 2) == 5.0", "description": "basic divide"},
+      {"assertion": "assert divide(9, 3) == 3.0", "description": "another divide"},
+      {"assertion": "assert divide(0, 5) == 0.0", "description": "zero numerator"}
+    ]
+  },
+  {
+    "id": 16,
+    "description": "Fix the subtraction function",
+    "buggy_code": "def subtract(a, b):\n    return a + b",
+    "correct_code": "def subtract(a, b):\n    return a - b",
+    "bug_type": "wrong_operator",
+    "tests": [
+      {"assertion": "assert subtract(5, 3) == 2", "description": "basic subtract"},
+      {"assertion": "assert subtract(0, 0) == 0", "description": "zero case"},
+      {"assertion": "assert subtract(10, 15) == -5", "description": "negative result"}
+    ]
+  },
+  {
+    "id": 17,
+    "description": "Fix the string repeat using wrong method",
+    "buggy_code": "def repeat_str(s, n):\n    return s + str(n)",
+    "correct_code": "def repeat_str(s, n):\n    return s * n",
+    "bug_type": "string_method_error",
+    "tests": [
+      {"assertion": "assert repeat_str('ab', 3) == 'ababab'", "description": "repeat 3 times"},
+      {"assertion": "assert repeat_str('x', 2) == 'xx'", "description": "repeat 2 times"},
+      {"assertion": "assert repeat_str('hi', 1) == 'hi'", "description": "repeat once"}
+    ]
+  },
+  {
+    "id": 18,
+    "description": "Fix the absolute value with wrong condition",
+    "buggy_code": "def absolute(n):\n    if n > 0:\n        return -n\n    return n",
+    "correct_code": "def absolute(n):\n    if n < 0:\n        return -n\n    return n",
+    "bug_type": "missing_condition",
+    "tests": [
+      {"assertion": "assert absolute(-5) == 5", "description": "negative input"},
+      {"assertion": "assert absolute(5) == 5", "description": "positive input"},
+      {"assertion": "assert absolute(0) == 0", "description": "zero input"}
+    ]
+  },
+  {
+    "id": 19,
+    "description": "Fix the count elements function with off-by-one",
+    "buggy_code": "def count_elements(lst):\n    count = 0\n    for i in range(len(lst) - 1):\n        count += 1\n    return count",
+    "correct_code": "def count_elements(lst):\n    count = 0\n    for i in range(len(lst)):\n        count += 1\n    return count",
+    "bug_type": "off_by_one",
+    "tests": [
+      {"assertion": "assert count_elements([1, 2, 3]) == 3", "description": "three elements"},
+      {"assertion": "assert count_elements([1]) == 1", "description": "one element"},
+      {"assertion": "assert count_elements([1, 2, 3, 4, 5]) == 5", "description": "five elements"}
+    ]
+  },
+  {
+    "id": 20,
+    "description": "Fix wrong return in minimum function",
+    "buggy_code": "def min_of_two(a, b):\n    if a < b:\n        return b\n    return a",
+    "correct_code": "def min_of_two(a, b):\n    if a < b:\n        return a\n    return b",
+    "bug_type": "wrong_return_value",
+    "tests": [
+      {"assertion": "assert min_of_two(3, 5) == 3", "description": "first is min"},
+      {"assertion": "assert min_of_two(7, 2) == 2", "description": "second is min"},
+      {"assertion": "assert min_of_two(4, 4) == 4", "description": "equal values"}
+    ]
+  }
+]
